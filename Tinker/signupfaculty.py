@@ -21,17 +21,17 @@ def signup():
         status_label.config(text="Invalid email format (missing @ symbol)", foreground="red")
         return
 
-    conn = sqlite3.connect('user_database.db')
+    conn = sqlite3.connect('faculty_database.db')
     cursor = conn.cursor()
 
      # Check if the username is already in use
-    cursor.execute('SELECT username FROM users WHERE username = ?', (username,))
+    cursor.execute('SELECT username FROM faculty WHERE username = ?', (username,))
     existing_user = cursor.fetchone()
 
     if existing_user:
         status_label.config(text="Username already exists", foreground="red")
     else:
-        cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', (username, password, email))
+        cursor.execute('INSERT INTO faculty (username, password, email) VALUES (?, ?, ?)', (username, password, email))
         conn.commit()
         conn.close()
         status_label.config(text="Signup successful", foreground="green")
@@ -46,7 +46,7 @@ def open_manager():
 
 def open_login_page(event):
     root.destroy()
-    file_path = 'login.py'
+    file_path = 'loginfaculty.py'
     try:
         subprocess.Popen(['python', file_path])
     except FileNotFoundError:
@@ -60,7 +60,7 @@ def on_leave(event):
 
 
 root = tk.Tk()
-root.title("User Signup")
+root.title("Faculty Signup")
 width=400
 height=300
 screenwidth = root.winfo_screenwidth()

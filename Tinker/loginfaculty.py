@@ -11,10 +11,10 @@ def login():
     if not username or not password:
         status_label.config(text="All fields are required", foreground="red")
         return
-    conn = sqlite3.connect('user_database.db')
+    conn = sqlite3.connect('faculty_database.db')
     cursor = conn.cursor()
 
-    cursor.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
+    cursor.execute('SELECT * FROM faculty WHERE username = ? AND password = ?', (username, password))
     user = cursor.fetchone()
 
     if user:
@@ -25,7 +25,7 @@ def login():
         status_label.config(text="Invalid username or password", foreground="red")
 
 def open_manager():
-    file_path = 'manage.py'
+    file_path = 'managefaculty.py'
     try:
         subprocess.Popen(['python', file_path])
     except FileNotFoundError:
@@ -33,7 +33,7 @@ def open_manager():
 
 def open_signup_page(event):
     root.destroy()
-    file_path = 'signup.py'
+    file_path = 'signupfaculty.py'
     try:
         subprocess.Popen(['python', file_path])
     except FileNotFoundError:
@@ -46,7 +46,7 @@ def on_leave(event):
     style.map("TButton", background=[("active", "#001427")])
 
 root = tk.Tk()
-root.title("User Login")
+root.title("Faculty Login")
 width=400
 height=300
 screenwidth = root.winfo_screenwidth()

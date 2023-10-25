@@ -6,7 +6,7 @@ class App:
     def __init__(self, root):
         #setting title
         
-        root.title("Attendance Manager-User")
+        root.title("Attendance Manager-Faculty")
         #setting window size
         width=600
         height=400
@@ -48,22 +48,9 @@ class App:
         GButton_803.place(x=320,y=250,width=78,height=30)
         GButton_803["command"] = self.GButton_803_command
 
-        def open_signup_page(event):
-                root.destroy()
-                file_path = 'signupfaculty.py'
-                try:
-                        subprocess.Popen(['python', file_path])
-                except FileNotFoundError:
-                        print("File not found.")
-
-        login_label = tk.Label(root, text="Faculty Click here", fg="blue", bg="#ffd6ff",cursor="hand2")
         
-        login_label.pack()
-        login_label.place(x=250,y=325)
-        login_label.bind("<Button-1>", open_signup_page) 
-
     def GButton_971_command(self):
-        file_path = 'signup.py'
+        file_path = 'signupfaculty.py'
         try:
                 subprocess.Popen(['python', file_path])
         except FileNotFoundError:
@@ -72,7 +59,7 @@ class App:
 
 
     def GButton_803_command(self):
-        file_path = 'login.py'
+        file_path = 'loginfaculty.py'
         try:
                 subprocess.Popen(['python', file_path])
         except FileNotFoundError:
